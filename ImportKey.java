@@ -84,10 +84,10 @@ public class ImportKey  {
     public static void main ( String args[]) {
         
         // change this if you want another password by default
-        String keypass = "importkey";
+        String keypass = "sapB1iP";
         
         // change this if you want another alias by default
-        String defaultalias = "importkey";
+        String defaultalias = "tomcat";
 
         // change this if you want another keystorefile by default
         String keystorename = System.getProperty("keystore");
@@ -143,8 +143,14 @@ public class ImportKey  {
                 Certificate cert = cf.generateCertificate(certstream) ;
                 certs[0] = cert;
             } else {
-                System.out.println("Certificate chain length: "+c.size());
-                certs = (Certificate[])c.toArray();
+                System.out.println("Certificate chain length: " + c.size());
+                //certs = (Certificate[])c.toArray();
+                int i = 0;
+                Iterator it = c.iterator();
+                while (it.hasNext()) {
+                  certs[i] = (Certificate)it.next();
+                  i++;
+                }
             }
 
             // storing keystore
